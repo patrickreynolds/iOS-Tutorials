@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CDB2D39B18AA08670037367B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB2D39A18AA08670037367B /* Foundation.framework */; };
+		CDB2D39D18AA08670037367B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB2D39C18AA08670037367B /* CoreGraphics.framework */; };
+		CDB2D39F18AA08670037367B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB2D39E18AA08670037367B /* UIKit.framework */; };
+		CDB2D3A518AA08670037367B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDB2D3A318AA08670037367B /* InfoPlist.strings */; };
+		CDB2D3A718AA08670037367B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB2D3A618AA08670037367B /* main.m */; };
+		CDB2D3AB18AA08670037367B /* QuickTempAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB2D3AA18AA08670037367B /* QuickTempAppDelegate.m */; };
+		CDB2D3AE18AA08670037367B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDB2D3AC18AA08670037367B /* Main.storyboard */; };
+		CDB2D3B118AA08670037367B /* QuickTempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB2D3B018AA08670037367B /* QuickTempViewController.m */; };
+		CDB2D3B318AA08670037367B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDB2D3B218AA08670037367B /* Images.xcassets */; };
+		CDB2D3BA18AA08670037367B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB2D3B918AA08670037367B /* XCTest.framework */; };
+		CDB2D3BB18AA08670037367B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB2D39A18AA08670037367B /* Foundation.framework */; };
+		CDB2D3BC18AA08670037367B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDB2D39E18AA08670037367B /* UIKit.framework */; };
+		CDB2D3C418AA08670037367B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDB2D3C218AA08670037367B /* InfoPlist.strings */; };
+		CDB2D3C618AA08670037367B /* QuickTempTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB2D3C518AA08670037367B /* QuickTempTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CDB2D3BD18AA08670037367B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDB2D38F18AA08670037367B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDB2D39618AA08670037367B;
+			remoteInfo = QuickTemp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CDB2D39718AA08670037367B /* QuickTemp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTemp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB2D39A18AA08670037367B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CDB2D39C18AA08670037367B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CDB2D39E18AA08670037367B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CDB2D3A218AA08670037367B /* QuickTemp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuickTemp-Info.plist"; sourceTree = "<group>"; };
+		CDB2D3A418AA08670037367B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CDB2D3A618AA08670037367B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CDB2D3A818AA08670037367B /* QuickTemp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QuickTemp-Prefix.pch"; sourceTree = "<group>"; };
+		CDB2D3A918AA08670037367B /* QuickTempAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickTempAppDelegate.h; sourceTree = "<group>"; };
+		CDB2D3AA18AA08670037367B /* QuickTempAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickTempAppDelegate.m; sourceTree = "<group>"; };
+		CDB2D3AD18AA08670037367B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CDB2D3AF18AA08670037367B /* QuickTempViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickTempViewController.h; sourceTree = "<group>"; };
+		CDB2D3B018AA08670037367B /* QuickTempViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickTempViewController.m; sourceTree = "<group>"; };
+		CDB2D3B218AA08670037367B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CDB2D3B818AA08670037367B /* QuickTempTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTempTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDB2D3B918AA08670037367B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CDB2D3C118AA08670037367B /* QuickTempTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuickTempTests-Info.plist"; sourceTree = "<group>"; };
+		CDB2D3C318AA08670037367B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CDB2D3C518AA08670037367B /* QuickTempTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuickTempTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CDB2D39418AA08670037367B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB2D39D18AA08670037367B /* CoreGraphics.framework in Frameworks */,
+				CDB2D39F18AA08670037367B /* UIKit.framework in Frameworks */,
+				CDB2D39B18AA08670037367B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB2D3B518AA08670037367B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB2D3BA18AA08670037367B /* XCTest.framework in Frameworks */,
+				CDB2D3BC18AA08670037367B /* UIKit.framework in Frameworks */,
+				CDB2D3BB18AA08670037367B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CDB2D38E18AA08670037367B = {
+			isa = PBXGroup;
+			children = (
+				CDB2D3A018AA08670037367B /* QuickTemp */,
+				CDB2D3BF18AA08670037367B /* QuickTempTests */,
+				CDB2D39918AA08670037367B /* Frameworks */,
+				CDB2D39818AA08670037367B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CDB2D39818AA08670037367B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDB2D39718AA08670037367B /* QuickTemp.app */,
+				CDB2D3B818AA08670037367B /* QuickTempTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CDB2D39918AA08670037367B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDB2D39A18AA08670037367B /* Foundation.framework */,
+				CDB2D39C18AA08670037367B /* CoreGraphics.framework */,
+				CDB2D39E18AA08670037367B /* UIKit.framework */,
+				CDB2D3B918AA08670037367B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDB2D3A018AA08670037367B /* QuickTemp */ = {
+			isa = PBXGroup;
+			children = (
+				CDB2D3AC18AA08670037367B /* Main.storyboard */,
+				CDB2D3AF18AA08670037367B /* QuickTempViewController.h */,
+				CDB2D3B018AA08670037367B /* QuickTempViewController.m */,
+				CDB2D3B218AA08670037367B /* Images.xcassets */,
+				CDB2D3A118AA08670037367B /* Supporting Files */,
+			);
+			path = QuickTemp;
+			sourceTree = "<group>";
+		};
+		CDB2D3A118AA08670037367B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CDB2D3A918AA08670037367B /* QuickTempAppDelegate.h */,
+				CDB2D3AA18AA08670037367B /* QuickTempAppDelegate.m */,
+				CDB2D3A218AA08670037367B /* QuickTemp-Info.plist */,
+				CDB2D3A318AA08670037367B /* InfoPlist.strings */,
+				CDB2D3A618AA08670037367B /* main.m */,
+				CDB2D3A818AA08670037367B /* QuickTemp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDB2D3BF18AA08670037367B /* QuickTempTests */ = {
+			isa = PBXGroup;
+			children = (
+				CDB2D3C518AA08670037367B /* QuickTempTests.m */,
+				CDB2D3C018AA08670037367B /* Supporting Files */,
+			);
+			path = QuickTempTests;
+			sourceTree = "<group>";
+		};
+		CDB2D3C018AA08670037367B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CDB2D3C118AA08670037367B /* QuickTempTests-Info.plist */,
+				CDB2D3C218AA08670037367B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CDB2D39618AA08670037367B /* QuickTemp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDB2D3C918AA08670037367B /* Build configuration list for PBXNativeTarget "QuickTemp" */;
+			buildPhases = (
+				CDB2D39318AA08670037367B /* Sources */,
+				CDB2D39418AA08670037367B /* Frameworks */,
+				CDB2D39518AA08670037367B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickTemp;
+			productName = QuickTemp;
+			productReference = CDB2D39718AA08670037367B /* QuickTemp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CDB2D3B718AA08670037367B /* QuickTempTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDB2D3CC18AA08670037367B /* Build configuration list for PBXNativeTarget "QuickTempTests" */;
+			buildPhases = (
+				CDB2D3B418AA08670037367B /* Sources */,
+				CDB2D3B518AA08670037367B /* Frameworks */,
+				CDB2D3B618AA08670037367B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDB2D3BE18AA08670037367B /* PBXTargetDependency */,
+			);
+			name = QuickTempTests;
+			productName = QuickTempTests;
+			productReference = CDB2D3B818AA08670037367B /* QuickTempTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CDB2D38F18AA08670037367B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = QuickTemp;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Patrick Reynolds";
+				TargetAttributes = {
+					CDB2D3B718AA08670037367B = {
+						TestTargetID = CDB2D39618AA08670037367B;
+					};
+				};
+			};
+			buildConfigurationList = CDB2D39218AA08670037367B /* Build configuration list for PBXProject "QuickTemp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CDB2D38E18AA08670037367B;
+			productRefGroup = CDB2D39818AA08670037367B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CDB2D39618AA08670037367B /* QuickTemp */,
+				CDB2D3B718AA08670037367B /* QuickTempTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CDB2D39518AA08670037367B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB2D3B318AA08670037367B /* Images.xcassets in Resources */,
+				CDB2D3A518AA08670037367B /* InfoPlist.strings in Resources */,
+				CDB2D3AE18AA08670037367B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB2D3B618AA08670037367B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB2D3C418AA08670037367B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CDB2D39318AA08670037367B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB2D3AB18AA08670037367B /* QuickTempAppDelegate.m in Sources */,
+				CDB2D3B118AA08670037367B /* QuickTempViewController.m in Sources */,
+				CDB2D3A718AA08670037367B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDB2D3B418AA08670037367B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDB2D3C618AA08670037367B /* QuickTempTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CDB2D3BE18AA08670037367B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDB2D39618AA08670037367B /* QuickTemp */;
+			targetProxy = CDB2D3BD18AA08670037367B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CDB2D3A318AA08670037367B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDB2D3A418AA08670037367B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CDB2D3AC18AA08670037367B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDB2D3AD18AA08670037367B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CDB2D3C218AA08670037367B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDB2D3C318AA08670037367B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CDB2D3C718AA08670037367B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CDB2D3C818AA08670037367B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CDB2D3CA18AA08670037367B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuickTemp/QuickTemp-Prefix.pch";
+				INFOPLIST_FILE = "QuickTemp/QuickTemp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CDB2D3CB18AA08670037367B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuickTemp/QuickTemp-Prefix.pch";
+				INFOPLIST_FILE = "QuickTemp/QuickTemp-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CDB2D3CD18AA08670037367B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/QuickTemp.app/QuickTemp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuickTemp/QuickTemp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "QuickTempTests/QuickTempTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CDB2D3CE18AA08670037367B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/QuickTemp.app/QuickTemp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "QuickTemp/QuickTemp-Prefix.pch";
+				INFOPLIST_FILE = "QuickTempTests/QuickTempTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CDB2D39218AA08670037367B /* Build configuration list for PBXProject "QuickTemp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDB2D3C718AA08670037367B /* Debug */,
+				CDB2D3C818AA08670037367B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDB2D3C918AA08670037367B /* Build configuration list for PBXNativeTarget "QuickTemp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDB2D3CA18AA08670037367B /* Debug */,
+				CDB2D3CB18AA08670037367B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CDB2D3CC18AA08670037367B /* Build configuration list for PBXNativeTarget "QuickTempTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDB2D3CD18AA08670037367B /* Debug */,
+				CDB2D3CE18AA08670037367B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CDB2D38F18AA08670037367B /* Project object */;
+}
