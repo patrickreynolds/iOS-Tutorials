@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CDDC6DB318AAAB7700D5D094"
-               BuildableName = "LocalHost"
-               BlueprintName = "LocalHost"
-               ReferencedContainer = "container:LocalHost.xcodeproj">
+               BlueprintIdentifier = "CDDC6DEA18AAF19000D5D094"
+               BuildableName = "Whereami.app"
+               BlueprintName = "Whereami"
+               ReferencedContainer = "container:Whereami.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +28,24 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CDDC6E0B18AAF19000D5D094"
+               BuildableName = "WhereamiTests.xctest"
+               BlueprintName = "WhereamiTests"
+               ReferencedContainer = "container:Whereami.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CDDC6DB318AAAB7700D5D094"
-            BuildableName = "LocalHost"
-            BlueprintName = "LocalHost"
-            ReferencedContainer = "container:LocalHost.xcodeproj">
+            BlueprintIdentifier = "CDDC6DEA18AAF19000D5D094"
+            BuildableName = "Whereami.app"
+            BlueprintName = "Whereami"
+            ReferencedContainer = "container:Whereami.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +61,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CDDC6DB318AAAB7700D5D094"
-            BuildableName = "LocalHost"
-            BlueprintName = "LocalHost"
-            ReferencedContainer = "container:LocalHost.xcodeproj">
+            BlueprintIdentifier = "CDDC6DEA18AAF19000D5D094"
+            BuildableName = "Whereami.app"
+            BlueprintName = "Whereami"
+            ReferencedContainer = "container:Whereami.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +79,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CDDC6DB318AAAB7700D5D094"
-            BuildableName = "LocalHost"
-            BlueprintName = "LocalHost"
-            ReferencedContainer = "container:LocalHost.xcodeproj">
+            BlueprintIdentifier = "CDDC6DEA18AAF19000D5D094"
+            BuildableName = "Whereami.app"
+            BlueprintName = "Whereami"
+            ReferencedContainer = "container:Whereami.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

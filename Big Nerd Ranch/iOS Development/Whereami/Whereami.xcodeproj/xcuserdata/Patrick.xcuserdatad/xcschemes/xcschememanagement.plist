@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>LocalHost.xcscheme</key>
+		<key>Whereami.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>CDDC6DB318AAAB7700D5D094</key>
+		<key>CDDC6DEA18AAF19000D5D094</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CDDC6E0B18AAF19000D5D094</key>
 		<dict>
 			<key>primary</key>
 			<true/>
