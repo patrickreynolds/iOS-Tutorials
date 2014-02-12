@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) NSMutableArray *locationUpdates;
 @property (strong, nonatomic) NSString *allUpdates;
-@property (nonatomic) int updatesRecieved;
+@property (nonatomic) int updatesReceived;
 
 @end
 
@@ -81,7 +81,7 @@
     // Setting all location based attributes back to nil or 0.
     self.allUpdates = nil;
     self.locationUpdates = nil;
-    self.updatesRecieved = 0;
+    self.updatesReceived = 0;
     [self updateLocationInfo];
 }
 
@@ -89,14 +89,14 @@
 - (void)updateLocationInfo
 {
     for (id update in self.locationUpdates) {
-        self.updatesRecieved++;
+        self.updatesReceived++;
         
         //NSString *newUpdate = [update description];
         //newUpdate = [newUpdate stringByAppendingString:@"\n\n"];
         //newUpdate = [[NSString stringWithFormat:@"Update #%d\n", self.updatesRecieved] stringByAppendingString:newUpdate];
         
         // Nested ne liner for the code above
-        NSString *newUpdate = [[NSString stringWithFormat:@"Update #%d\n", self.updatesRecieved] stringByAppendingString:[[update description] stringByAppendingString:@"\n\n"]];
+        NSString *newUpdate = [[NSString stringWithFormat:@"Update #%d\n", self.updatesReceived] stringByAppendingString:[[update description] stringByAppendingString:@"\n\n"]];
         
         self.allUpdates = [self.allUpdates stringByAppendingString:newUpdate];
     }
