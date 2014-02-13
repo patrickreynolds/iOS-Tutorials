@@ -14,13 +14,15 @@
 		CD1EDC3818AC444000EB48A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC3718AC444000EB48A3 /* main.m */; };
 		CD1EDC3C18AC444000EB48A3 /* HomeOwnerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC3B18AC444000EB48A3 /* HomeOwnerAppDelegate.m */; };
 		CD1EDC3F18AC444000EB48A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD1EDC3D18AC444000EB48A3 /* Main.storyboard */; };
-		CD1EDC4218AC444000EB48A3 /* HomeOwnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC4118AC444000EB48A3 /* HomeOwnerViewController.m */; };
 		CD1EDC4418AC444000EB48A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD1EDC4318AC444000EB48A3 /* Images.xcassets */; };
 		CD1EDC4B18AC444100EB48A3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1EDC4A18AC444100EB48A3 /* XCTest.framework */; };
 		CD1EDC4C18AC444100EB48A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1EDC2B18AC444000EB48A3 /* Foundation.framework */; };
 		CD1EDC4D18AC444100EB48A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1EDC2F18AC444000EB48A3 /* UIKit.framework */; };
 		CD1EDC5518AC444100EB48A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD1EDC5318AC444100EB48A3 /* InfoPlist.strings */; };
 		CD1EDC5718AC444100EB48A3 /* HomeOwnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC5618AC444100EB48A3 /* HomeOwnerTests.m */; };
+		CD1EDC6218AC44E700EB48A3 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC6118AC44E700EB48A3 /* ItemsViewController.m */; };
+		CD1EDC6518AC45C100EB48A3 /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC6418AC45C100EB48A3 /* BNRItem.m */; };
+		CD1EDC6818AC4A0000EB48A3 /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC6718AC4A0000EB48A3 /* BNRItemStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +47,18 @@
 		CD1EDC3A18AC444000EB48A3 /* HomeOwnerAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeOwnerAppDelegate.h; sourceTree = "<group>"; };
 		CD1EDC3B18AC444000EB48A3 /* HomeOwnerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeOwnerAppDelegate.m; sourceTree = "<group>"; };
 		CD1EDC3E18AC444000EB48A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CD1EDC4018AC444000EB48A3 /* HomeOwnerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeOwnerViewController.h; sourceTree = "<group>"; };
-		CD1EDC4118AC444000EB48A3 /* HomeOwnerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeOwnerViewController.m; sourceTree = "<group>"; };
 		CD1EDC4318AC444000EB48A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CD1EDC4918AC444100EB48A3 /* HomeOwnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeOwnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD1EDC4A18AC444100EB48A3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		CD1EDC5218AC444100EB48A3 /* HomeOwnerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HomeOwnerTests-Info.plist"; sourceTree = "<group>"; };
 		CD1EDC5418AC444100EB48A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CD1EDC5618AC444100EB48A3 /* HomeOwnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeOwnerTests.m; sourceTree = "<group>"; };
+		CD1EDC6018AC44E700EB48A3 /* ItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsViewController.h; sourceTree = "<group>"; };
+		CD1EDC6118AC44E700EB48A3 /* ItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsViewController.m; sourceTree = "<group>"; };
+		CD1EDC6318AC45C100EB48A3 /* BNRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItem.h; sourceTree = "<group>"; };
+		CD1EDC6418AC45C100EB48A3 /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
+		CD1EDC6618AC4A0000EB48A3 /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
+		CD1EDC6718AC4A0000EB48A3 /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +118,13 @@
 		CD1EDC3118AC444000EB48A3 /* HomeOwner */ = {
 			isa = PBXGroup;
 			children = (
-				CD1EDC3A18AC444000EB48A3 /* HomeOwnerAppDelegate.h */,
-				CD1EDC3B18AC444000EB48A3 /* HomeOwnerAppDelegate.m */,
 				CD1EDC3D18AC444000EB48A3 /* Main.storyboard */,
-				CD1EDC4018AC444000EB48A3 /* HomeOwnerViewController.h */,
-				CD1EDC4118AC444000EB48A3 /* HomeOwnerViewController.m */,
+				CD1EDC6018AC44E700EB48A3 /* ItemsViewController.h */,
+				CD1EDC6118AC44E700EB48A3 /* ItemsViewController.m */,
+				CD1EDC6318AC45C100EB48A3 /* BNRItem.h */,
+				CD1EDC6418AC45C100EB48A3 /* BNRItem.m */,
+				CD1EDC6618AC4A0000EB48A3 /* BNRItemStore.h */,
+				CD1EDC6718AC4A0000EB48A3 /* BNRItemStore.m */,
 				CD1EDC4318AC444000EB48A3 /* Images.xcassets */,
 				CD1EDC3218AC444000EB48A3 /* Supporting Files */,
 			);
@@ -126,6 +134,8 @@
 		CD1EDC3218AC444000EB48A3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD1EDC3A18AC444000EB48A3 /* HomeOwnerAppDelegate.h */,
+				CD1EDC3B18AC444000EB48A3 /* HomeOwnerAppDelegate.m */,
 				CD1EDC3318AC444000EB48A3 /* HomeOwner-Info.plist */,
 				CD1EDC3418AC444000EB48A3 /* InfoPlist.strings */,
 				CD1EDC3718AC444000EB48A3 /* main.m */,
@@ -250,8 +260,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD1EDC6818AC4A0000EB48A3 /* BNRItemStore.m in Sources */,
+				CD1EDC6218AC44E700EB48A3 /* ItemsViewController.m in Sources */,
+				CD1EDC6518AC45C100EB48A3 /* BNRItem.m in Sources */,
 				CD1EDC3818AC444000EB48A3 /* main.m in Sources */,
-				CD1EDC4218AC444000EB48A3 /* HomeOwnerViewController.m in Sources */,
 				CD1EDC3C18AC444000EB48A3 /* HomeOwnerAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

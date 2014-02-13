@@ -7,6 +7,8 @@
 //
 
 #import "ItemsViewController.h"
+#import "BNRItem.h"
+#import "BNRItemStore.h"
 
 @interface ItemsViewController ()
 
@@ -16,9 +18,13 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         // Custom initialization
+        //for (int i = 0; i < 5; i++) {
+        //    [[BNRItemStore sharedStore] createItem];
+        //    NSLog(@"Created item #%d", i);
+        //}
     }
     return self;
 }
@@ -26,43 +32,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    for (int i = 0; i < 5; i++) {
+        [[BNRItemStore sharedStore] createItem];
+    }
 }
 
 #pragma mark - Table view data source
-
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
-
+*/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [[[BNRItemStore sharedStore] allItems] count] + 1;
+    NSLog(@"Item count: %d", [[[BNRItemStore sharedStore] allItems] count]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"UITableViewCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    if ([indexPath row] < [[[BNRItemStore sharedStore] allItems] count]) {
+        // Configure the cell...
+        BNRItem *item = [[[BNRItemStore sharedStore] allItems] objectAtIndex:[indexPath row]];
+
+        cell.textLabel.text = [item description];
+        
+    } else {
+        
+        cell.textLabel.text = @"No more items!";
+    }
     
+    NSLog(@"Text: %@", [cell.textLabel.text description]);
     return cell;
 }
 
