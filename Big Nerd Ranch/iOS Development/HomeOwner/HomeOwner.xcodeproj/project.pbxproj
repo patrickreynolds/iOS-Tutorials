@@ -23,6 +23,7 @@
 		CD1EDC6218AC44E700EB48A3 /* ItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC6118AC44E700EB48A3 /* ItemsViewController.m */; };
 		CD1EDC6518AC45C100EB48A3 /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC6418AC45C100EB48A3 /* BNRItem.m */; };
 		CD1EDC6818AC4A0000EB48A3 /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EDC6718AC4A0000EB48A3 /* BNRItemStore.m */; };
+		CD6520CA18B28CD0006367B1 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6520C918B28CD0006367B1 /* HeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		CD1EDC6418AC45C100EB48A3 /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
 		CD1EDC6618AC4A0000EB48A3 /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
 		CD1EDC6718AC4A0000EB48A3 /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
+		CD6520C918B28CD0006367B1 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		CD1EDC3118AC444000EB48A3 /* HomeOwner */ = {
 			isa = PBXGroup;
 			children = (
+				CD6520C918B28CD0006367B1 /* HeaderView.xib */,
 				CD1EDC3D18AC444000EB48A3 /* Main.storyboard */,
 				CD1EDC6018AC44E700EB48A3 /* ItemsViewController.h */,
 				CD1EDC6118AC44E700EB48A3 /* ItemsViewController.m */,
@@ -242,6 +245,7 @@
 				CD1EDC4418AC444000EB48A3 /* Images.xcassets in Resources */,
 				CD1EDC3618AC444000EB48A3 /* InfoPlist.strings in Resources */,
 				CD1EDC3F18AC444000EB48A3 /* Main.storyboard in Resources */,
+				CD6520CA18B28CD0006367B1 /* HeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +477,7 @@
 				CD1EDC5C18AC444100EB48A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CD1EDC5D18AC444100EB48A3 /* Build configuration list for PBXNativeTarget "HomeOwnerTests" */ = {
 			isa = XCConfigurationList;
@@ -481,6 +486,7 @@
 				CD1EDC5F18AC444100EB48A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

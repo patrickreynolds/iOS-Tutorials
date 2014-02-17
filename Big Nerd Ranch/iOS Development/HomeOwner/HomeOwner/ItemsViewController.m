@@ -16,41 +16,112 @@
 
 @implementation ItemsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    if (self) {
-        // Custom initialization
-        //for (int i = 0; i < 5; i++) {
-        //    [[BNRItemStore sharedStore] createItem];
-        //    NSLog(@"Created item #%d", i);
-        //}
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    for (int i = 0; i < 5; i++) {
-        [[BNRItemStore sharedStore] createItem];
+}
+
+- (UIView *)headerView
+{
+    if (!headerView) {
+        [[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil];
+    }
+    return headerView;
+}
+
+- (IBAction)toggleEditingMode:(id)sender
+{
+    NSLog(@"Toggle editing was pressed.");
+    if ([self isEditing]) {
+        // Change text of button to inform user of state
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        // Turn off editing mode
+        [self setEditing:NO animated:YES];
+    } else {
+        // Change text of button to inform user of state
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        // Enter editing mode
+        [self setEditing:YES animated:YES];
     }
 }
 
+- (IBAction)addNewItem:(id)sender
+{
+    NSLog(@"Add new item pressed.");
+    
+    // Create a new BNRItem and add it to the store
+    BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
+    
+    // Figureout where that item is in the array
+    int lastRow = (int)[[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
+    
+    
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    
+    // Insert this new row into the talbe
+    [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip] withRowAnimation:[self randomAnimation]];
+    
+};
+
+
+- (UITableViewRowAnimation)randomAnimation
+{
+    int random = arc4random() % 8 + 1;
+    switch (random) {
+        case 1:
+            NSLog(@"Automatic animation.");
+            return UITableViewRowAnimationAutomatic;
+            break;
+        case 2:
+            NSLog(@"Bottom animation.");
+            return UITableViewRowAnimationBottom;
+            break;
+        case 3:
+            NSLog(@"Fade animation.");
+            return UITableViewRowAnimationFade;
+            break;
+        case 4:
+            NSLog(@"Left animation.");
+            return UITableViewRowAnimationLeft;
+            break;
+        case 5:
+            NSLog(@"Middle animation.");
+            return UITableViewRowAnimationMiddle;
+            break;
+        case 6:
+            NSLog(@"None animation.");
+            return UITableViewRowAnimationNone;
+            break;
+        case 7:
+            NSLog(@"Right animation.");
+            return UITableViewRowAnimationRight;
+            break;
+        case 8:
+            NSLog(@"Top animation.");
+            return UITableViewRowAnimationTop;
+            break;
+            
+        default:
+            NSLog(@"None animation");
+            return UITableViewRowAnimationNone;
+            break;
+    }
+}
+
+
 #pragma mark - Table view data source
-/*
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
     return 1;
 }
-*/
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
     return [[[BNRItemStore sharedStore] allItems] count] + 1;
-    NSLog(@"Item count: %d", [[[BNRItemStore sharedStore] allItems] count]);
+    NSLog(@"Item count: %lu", (unsigned long)[[[BNRItemStore sharedStore] allItems] count]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,6 +142,44 @@
     
     NSLog(@"Text: %@", [cell.textLabel.text description]);
     return cell;
+}
+
+#pragma HeaderView Implementation
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [self headerView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    // The height of the header view should be determined from
+    // the height of the view in the XIB file
+    return [[self headerView] bounds].size.height;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // If the table view is asking to commit a delete command..
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        BNRItemStore *itemStore = [BNRItemStore sharedStore];
+        NSArray *items = [itemStore allItems];
+        BNRItem *item = [items objectAtIndex:indexPath.row];
+        [itemStore removeItem:item];
+        
+        // We also remove that row from the table view with an animation
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row :destinationIndexPath.row];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Remove";
 }
 
 /*

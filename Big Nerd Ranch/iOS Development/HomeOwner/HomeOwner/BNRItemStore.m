@@ -16,17 +16,6 @@
 
 @implementation BNRItemStore
 
-/*
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        if (!_allItems) _allItems = [[NSMutableArray alloc] init];
-    }
-    
-    return self;
-}
- */
 
 + (BNRItemStore *)sharedStore
 {
@@ -44,7 +33,6 @@
 {
     if (!_allItems) _allItems = [[NSMutableArray alloc] init];
     return _allItems;
-    //return @[];
 }
 
 - (BNRItem *)createItem
@@ -52,6 +40,27 @@
     BNRItem *item = [BNRItem randomItem];
     [self.allItems addObject:item];
     return item;
+}
+
+- (void)moveItemAtIndex:(NSInteger)from :(NSInteger)to
+{
+    if (from == to) {
+        return;
+    }
+    
+    // Get pointer to object being moved so we can re-insert it
+    BNRItem *movedItem = [self.allItems objectAtIndex:from];
+    
+    // Remove movedItem form array
+    [self.allItems removeObjectAtIndex:from];
+    
+    // Insert movedItem in array atnew location
+    [self.allItems insertObject:movedItem atIndex:to];
+}
+
+- (void)removeItem:(BNRItem *)item
+{
+    [self.allItems removeObjectIdenticalTo:item];
 }
 
 @end
