@@ -42,6 +42,16 @@
     return item;
 }
 
+- (void)addBlankItem
+{
+    BNRItem *item = [[BNRItem alloc] init];
+    item.itemName = @"No more items";
+    item.serialNumber = @"";
+    item.valueInDollars = 0;
+    item.dateCreated = [NSDate date];
+    [self.allItems addObject:item];
+}
+
 - (void)moveItemAtIndex:(NSInteger)from :(NSInteger)to
 {
     if (from == to) {

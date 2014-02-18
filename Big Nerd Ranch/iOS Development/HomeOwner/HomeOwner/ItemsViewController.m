@@ -7,6 +7,7 @@
 //
 
 #import "ItemsViewController.h"
+#import "DetailsViewController.h"
 #import "BNRItem.h"
 #import "BNRItemStore.h"
 
@@ -19,8 +20,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[BNRItemStore sharedStore] addBlankItem];
 }
 
+/*
 - (UIView *)headerView
 {
     if (!headerView) {
@@ -28,7 +31,7 @@
     }
     return headerView;
 }
-
+*/
 - (IBAction)toggleEditingMode:(id)sender
 {
     NSLog(@"Toggle editing was pressed.");
@@ -39,7 +42,7 @@
         [self setEditing:NO animated:YES];
     } else {
         // Change text of button to inform user of state
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        //[sender setTitle:@"Done" forState:UIControlStateNormal];
         // Enter editing mode
         [self setEditing:YES animated:YES];
     }
@@ -120,7 +123,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[[BNRItemStore sharedStore] allItems] count] + 1;
+    return [[[BNRItemStore sharedStore] allItems] count];
     NSLog(@"Item count: %lu", (unsigned long)[[[BNRItemStore sharedStore] allItems] count]);
 }
 
@@ -135,9 +138,6 @@
 
         cell.textLabel.text = [item description];
         
-    } else {
-        
-        cell.textLabel.text = @"No more items!";
     }
     
     NSLog(@"Text: %@", [cell.textLabel.text description]);
@@ -145,7 +145,7 @@
 }
 
 #pragma HeaderView Implementation
-
+/*
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [self headerView];
@@ -157,7 +157,7 @@
     // the height of the view in the XIB file
     return [[self headerView] bounds].size.height;
 }
-
+*/
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // If the table view is asking to commit a delete command..
@@ -182,6 +182,55 @@
     return @"Remove";
 }
 
+#pragma Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ListVCtoDetialVC"]) {
+        DetailsViewController *detialVC = [segue destinationViewController];
+            NSIndexPath *selectedItem = [self.tableView indexPathForSelectedRow];
+            detialVC.item = [[[BNRItemStore sharedStore] allItems] objectAtIndex:selectedItem.row];
+    }
+}
+/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailsVC *detailVC = [[DetailsVC alloc] init];
+    
+    // Push it onto the top of the navigation controller's stack
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    BNRItem *selectedItem = [items objectAtIndex:[indexPath row]];
+    detailVC.item = selectedItem;
+    
+    [[self navigationController] pushViewController:detailVC animated:YES];
+}
+*/
+/*
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"ListVCtoDetialsVC"]) {
+        NSIndexPath *index = [self.tableView indexPathForSelectedRow];
+        //NSString *tableCellName = [[[BNRItemStore sharedStore] allItems] objectAtIndex:index.row];
+        //if ([tableCellName isEqualToString:@"List Item"]) {
+            DetailsVC *detailVC = [segue destinationViewController];
+            // Push it onto the top of the navigation controller's stack
+            detailVC.item = [[[BNRItemStore sharedStore] allItems] objectAtIndex:index.row];
+        //}
+    }
+}
+ */
+/*
+if([[segue identifier] isEqualToString:@"tableVCtoCollectionVC"])
+{
+    //InstamationSearchCollectionViewController *searchCollection = [segue destinationViewController];
+    NSIndexPath* index = [self.tableView indexPathForSelectedRow];
+    NSString *tableCellName = [self.locationsArray objectAtIndex:index.row];
+    NSLog(@"Index: %@", index);
+    NSLog(@"Index Row: %d", index.row);
+    NSLog(@"tableCellName: %@", tableCellName);
+    
+    if ([tableCellName isEqualToString:@"Around Me"]) {
+*/
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

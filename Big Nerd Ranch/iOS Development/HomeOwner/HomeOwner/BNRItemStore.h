@@ -25,4 +25,6 @@
 // Remove an item form a passed index.
 - (void)removeItem:(BNRItem *)item;
 
+- (void)addBlankItem;
+
 @end
