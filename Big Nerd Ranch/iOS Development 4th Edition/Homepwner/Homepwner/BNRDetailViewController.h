@@ -1,5 +1,5 @@
 //
-//  BNRItemsViewController.h
+//  BNRDetailViewController.h
 //  Homepwner
 //
 //  Created by Patrick Reynolds on 2/22/14.
@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BNRItemsViewController : UITableViewController <UIAlertViewDelegate>
+@class BNRItem;
+
+@interface BNRDetailViewController : UIViewController
+@property (strong, nonatomic) BNRItem *item;
 
 @end

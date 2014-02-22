@@ -7,8 +7,15 @@
 //
 
 #import "BNRItemsViewController.h"
+#import "BNRDetailViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
+
+@interface BNRItemsViewController()
+
+//@property (strong, nonatomic) IBOutlet UIView *headerView;
+
+@end
 
 @implementation BNRItemsViewController
 
@@ -17,9 +24,17 @@
     self = [super initWithStyle:UITableViewStylePlain];
     
     if (self) {
-        for (int i = 0; i < 5; i++) {
-            [[BNRItemStore sharedStore] createItem];
-        }
+        UINavigationItem *navItem = self.navigationItem;
+        navItem.title = @"Homepwner";
+        
+        // Create a new bar button item that will send
+        // addNewItem: to BNRItemsViewController
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
+        
+        // set this bar button item as the right item in the navigationItem
+        navItem.rightBarButtonItem = barButtonItem;
+        
+        navItem.leftBarButtonItem = self.editButtonItem;
     }
     
     return self;
@@ -30,11 +45,34 @@
     return [self init];
 }
 
+/*
+- (UIView *)headerView
+{
+    if (!_headerView) {
+        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
+                                      owner:self
+                                    options:nil];
+    }
+    return _headerView;
+}
+*/
+ 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    /* // Removed custom table header view. Added elements to navBar
+    UIView *headerView = self.headerView;
+    [self.tableView setTableHeaderView:headerView];
+    */
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"BNRItemCell"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -59,6 +97,109 @@
 
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // If the table view is asking to commit a delete command...
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        BNRItem *item = items[indexPath.row];
+        
+        
+        //UIAlertView *deletionAlert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Delete %@", item.itemName] message:[NSString stringWithFormat:@"Are you sure you want to remove %@ from the store?", item.itemName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
+        //[deletionAlert show];
+        //NSLog(@"After message shown.");
+        //if (self.confirmDelete) {
+            [[BNRItemStore sharedStore] removeItem:item];
+            
+            // Also remove that row from the table view with an animation
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //}
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"Remove";
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
+                                        toIndex:destinationIndexPath.row];
+}
+
+- (IBAction)addNewItem:(id)sender
+{
+    NSLog(@"\"New\" button pressed in Header View.");
+    
+    // Create a new BNRItem and add it to the store
+    BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
+    
+    // Figure out where that item is in the array
+    NSInteger lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
+    
+    // Make a new index path for the 0th section, last row
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    
+    // Insert this new row into the table.
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationMiddle];
+}
+
+- (IBAction)toggleEditingMode:(id)sender
+{
+    NSLog(@"\"Edit\" button pressed in Header View.");
+    
+    // If you are currently in editing mode
+    if (self.isEditing) {
+        
+        // Change text of button to inform user of state
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        
+        // Turn off editing mode
+        [self setEditing:NO animated:YES];
+    } else {
+        // Change text of button to inform user of state
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        
+        // Enter editing mode
+        [self setEditing:YES animated:YES];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] init];
+    
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    BNRItem *selectedItem = items[indexPath.row];
+    
+    // Give detial view controller a pointer to the item object in row
+    detailViewController.item = selectedItem;
+    
+    // Push it onto the top fo the navigation controller's stack
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+
+
+/* // Saving for future implementation. Add <UIAlertViewDelegate> to class when implementing
+ - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+ // the user clicked one of the OK/Cancel buttons
+ self.confirmDelete = NO;
+ if (buttonIndex == 1)
+ {
+ NSLog(@"Yes, delete.");
+ self.confirmDelete = YES;
+ }
+ else
+ {
+ NSLog(@"Can not delete.");
+ self.confirmDelete = NO;
+ }
+ }
+ */
 
 
 @end

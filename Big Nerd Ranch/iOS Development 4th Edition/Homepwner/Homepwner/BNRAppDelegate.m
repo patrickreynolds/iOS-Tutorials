@@ -17,7 +17,14 @@
     
     // Create BNRItemsViewController and add it as the root view controller
     BNRItemsViewController *itemsVC = [[BNRItemsViewController alloc] init];
-    self.window.rootViewController = itemsVC;
+    
+    
+    // Create an instance of a UINavigationController
+    // its stack contains only itemsViewController
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:itemsVC];
+    
+    // Place navigation controller's view inthe window hierarchy
+    self.window.rootViewController = navigationController;
     
     
     // Override point for customization after application launch.
