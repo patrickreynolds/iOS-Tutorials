@@ -16,18 +16,36 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //CGRect firstFrame = CGRectMake(160, 240, 100, 150);
-    CGRect firstFrame = self.window.bounds;
-    
-    BNRHypnosisView* firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
+    //CGRect firstFrame = self.window.bounds;
+    //BNRHypnosisView* firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
     //firstView.backgroundColor = [UIColor redColor];
-    [self.window addSubview:firstView];
+    //[self.window addSubview:firstView];
     
-    /*
-    CGRect secondFrame = CGRectMake(20, 20, 50, 50);
-    BNRHypnosisView *secondView = [[BNRHypnosisView alloc] initWithFrame:secondFrame];
-    secondView.backgroundColor = [UIColor blueColor];
-    [firstView addSubview:secondView];
-    */
+    // Create CGRects for frames
+    CGRect screenRect = self.window.bounds;
+    CGRect bigRect = screenRect;
+    bigRect.size.width *= 2;
+    //bigRect.size.height *= 2;
+    
+    // Create a screen-sized scroll view and add it to the window
+    UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+    [self.window addSubview:scrollView];
+    
+    // Create a super-sized hypnosis view and add it to the scroll view
+    //BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:bigRect];
+    // Create a screen sized hypnosis view and add it to the scroll view
+    BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:hypnosisView];
+    
+    
+    // Add a second screen-sized hypnosis viewjust off screen to the right
+    screenRect.origin.x += screenRect.size.width;
+    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    scrollView.pagingEnabled = YES;
+    [scrollView addSubview:anotherView];
+    
+    // Tell the scroll view how big its content area is
+    scrollView.contentSize = bigRect.size;
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
