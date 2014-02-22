@@ -1,13 +1,14 @@
 //
 //  BNRAppDelegate.m
-//  Hypnosister
+//  HypnoNerd
 //
-//  Created by Patrick Reynolds on 2/21/14.
+//  Created by Patrick Reynolds on 2/22/14.
 //  Copyright (c) 2014 Patrick Reynolds. All rights reserved.
 //
 
 #import "BNRAppDelegate.h"
-#import "BNRHypnosisView.h"
+#import "BNRHypnosisViewController.h"
+#import "BNRReminderViewController.h"
 
 @implementation BNRAppDelegate
 
@@ -15,37 +16,18 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //CGRect firstFrame = CGRectMake(160, 240, 100, 150);
-    //CGRect firstFrame = self.window.bounds;
-    //BNRHypnosisView* firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
-    //firstView.backgroundColor = [UIColor redColor];
-    //[self.window addSubview:firstView];
+    BNRHypnosisViewController *hypnosisVC = [[BNRHypnosisViewController alloc] init];
     
-    // Create CGRects for frames
-    CGRect screenRect = self.window.bounds;
-    CGRect bigRect = screenRect;
-    bigRect.size.width *= 2;
-    //bigRect.size.height *= 2;
+    // This will get a pointer to an object that represents the app bundle
+    //NSBundle *appBundle = [NSBundle mainBundle];
     
-    // Create a screen-sized scroll view and add it to the window
-    UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
-    [self.window addSubview:scrollView];
+    // Loog in the appBundle for the file BNRReminderViewController.xib
+    BNRReminderViewController *reminderVC = [[BNRReminderViewController alloc] init];
     
-    // Create a super-sized hypnosis view and add it to the scroll view
-    // BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:bigRect];
-    // Create a screen sized hypnosis view and add it to the scroll view
-    BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
-    [scrollView addSubview:hypnosisView];
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[hypnosisVC, reminderVC];
     
-    
-    // Add a second screen-sized hypnosis viewjust off screen to the right
-    screenRect.origin.x += screenRect.size.width;
-    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
-    scrollView.pagingEnabled = YES;
-    [scrollView addSubview:anotherView];
-    
-    // Tell the scroll view how big its content area is
-    scrollView.contentSize = bigRect.size;
+    self.window.rootViewController = tabBarController;
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
