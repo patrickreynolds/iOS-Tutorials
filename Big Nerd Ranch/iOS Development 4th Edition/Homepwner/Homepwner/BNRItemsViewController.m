@@ -19,6 +19,7 @@
 
 @implementation BNRItemsViewController
 
+#pragma mark - Initializers
 - (instancetype)init
 {
     self = [super initWithStyle:UITableViewStylePlain];
@@ -56,7 +57,8 @@
     return _headerView;
 }
 */
- 
+
+#pragma mark - View Life Cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -75,6 +77,7 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Table View Implementation
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[[BNRItemStore sharedStore] allItems] count];
@@ -129,6 +132,21 @@
                                         toIndex:destinationIndexPath.row];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] init];
+    
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    BNRItem *selectedItem = items[indexPath.row];
+    
+    // Give detial view controller a pointer to the item object in row
+    detailViewController.item = selectedItem;
+    
+    // Push it onto the top fo the navigation controller's stack
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+#pragma mark - Actions
 - (IBAction)addNewItem:(id)sender
 {
     NSLog(@"\"New\" button pressed in Header View.");
@@ -167,21 +185,6 @@
         [self setEditing:YES animated:YES];
     }
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] init];
-    
-    NSArray *items = [[BNRItemStore sharedStore] allItems];
-    BNRItem *selectedItem = items[indexPath.row];
-    
-    // Give detial view controller a pointer to the item object in row
-    detailViewController.item = selectedItem;
-    
-    // Push it onto the top fo the navigation controller's stack
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
-
 
 
 /* // Saving for future implementation. Add <UIAlertViewDelegate> to class when implementing
