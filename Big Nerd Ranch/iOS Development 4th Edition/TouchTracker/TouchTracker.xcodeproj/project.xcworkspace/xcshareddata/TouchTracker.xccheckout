@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F169BE4A-81B9-422E-9133-A319E25111F1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TouchTracker</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>383D3423-10DD-4969-8819-BF1291E9B67F</key>
+		<string>https://github.com/patrickreynolds/iOS-Tutorials.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Big Nerd Ranch/iOS Development 4th Edition/TouchTracker/TouchTracker.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>383D3423-10DD-4969-8819-BF1291E9B67F</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/patrickreynolds/iOS-Tutorials.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>383D3423-10DD-4969-8819-BF1291E9B67F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>383D3423-10DD-4969-8819-BF1291E9B67F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS Tutorials</string>
+		</dict>
+	</array>
+</dict>
+</plist>

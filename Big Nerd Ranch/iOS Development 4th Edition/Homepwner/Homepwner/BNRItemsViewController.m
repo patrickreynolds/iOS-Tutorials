@@ -187,7 +187,7 @@
 }
 
 
-/* // Saving for future implementation. Add <UIAlertViewDelegate> to class when implementing
+/* // Saving for future impl ementation. Add <UIAlertViewDelegate> to class when implementing
  - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
  // the user clicked one of the OK/Cancel buttons
  self.confirmDelete = NO;
