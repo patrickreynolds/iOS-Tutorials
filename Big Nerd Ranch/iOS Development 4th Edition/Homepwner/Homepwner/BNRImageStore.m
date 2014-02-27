@@ -21,7 +21,7 @@
     static BNRImageStore *sharedStore = nil;
     
     if (!sharedStore) {
-        sharedStore = [[BNRImageStore alloc] init];
+        sharedStore = [[self alloc] initPrivate];
     }
     
     return sharedStore;
