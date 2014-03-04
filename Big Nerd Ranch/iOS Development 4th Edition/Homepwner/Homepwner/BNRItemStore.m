@@ -47,8 +47,38 @@
 - (instancetype)initPrivate
 {
     self = [super init];
+    if (self) {
     
+        NSString *path = [self itemArchivePath];
+        _privateItmes = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        
+        // If the array hadn't ben saved previously, create a new empty one
+        if (!_privateItmes) {
+            _privateItmes = [[NSMutableArray alloc] init];
+        }
+    }
     return self;
+}
+
+- (NSString *)itemArchivePath
+{
+    // Make sure that the first argument is NSDocumentDirectory
+    // and not NSDocumentationDirectory
+    NSArray *documentDirectories =
+    NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    // Get the one document directory from that list
+    NSString *documentDirectory = [documentDirectories firstObject];
+    
+    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+}
+
+- (BOOL)saveChanges
+{
+    NSString *path = [self itemArchivePath];
+    
+    // Return YES on success
+    return [NSKeyedArchiver archiveRootObject:self.privateItmes toFile:path];
 }
 
 - (NSArray *)allItems
@@ -58,7 +88,7 @@
 
 - (BNRItem *)createItem
 {
-    BNRItem *item = [BNRItem randomItem];
+    BNRItem *item = [[BNRItem alloc] init];
     
     [self.privateItmes addObject:item];
     

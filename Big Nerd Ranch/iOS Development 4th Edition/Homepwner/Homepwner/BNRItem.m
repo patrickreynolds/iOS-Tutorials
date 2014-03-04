@@ -8,6 +8,9 @@
 
 #import "BNRItem.h"
 
+@interface BNRItem()
+@end
+
 @implementation BNRItem
 
 + (instancetype)randomItem
@@ -101,9 +104,42 @@
     return descriptionString;
 }
 
-- (void)dealloc
+#pragma mark - NSCoding Methods
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    NSLog(@"Destroyed %@", self);
+    self = [super init];
+    if (self) {
+        _itemName = [aDecoder decodeObjectForKey:@"itemName"];
+        _serialNumber = [aDecoder decodeObjectForKey:@"serialNumber"];
+        _dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
+        _itemKey = [aDecoder decodeObjectForKey:@"itemKey"];
+        
+        _valueInDollars = [aDecoder decodeIntForKey:@"valueInDollars"];
+    }
+    return self;
+}
+
+ - (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.itemName forKey:@"itemName"];
+    [aCoder encodeObject:self.serialNumber forKey:@"serialNumber"];
+    [aCoder encodeObject:self.dateCreated forKey:@"dateCreated"];
+    [aCoder encodeObject:self.itemKey forKey:@"itemKey"];
+    
+    [aCoder encodeInt:self.valueInDollars forKey:@"valueInDollars"];
+}
+
+- (NSString *)itemArchivePath
+{
+    // Make sure that the first argument is NSDocumentDictionary
+    // and not NSDocumentationDirectory
+    NSArray *documentDictionary =
+    NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    // Get the one document directory from that list
+    NSString *documentDirectory = [documentDictionary firstObject];
+    
+    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
 }
 
 @end
