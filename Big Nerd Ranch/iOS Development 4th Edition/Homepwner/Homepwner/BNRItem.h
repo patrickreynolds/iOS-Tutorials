@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BNRItem : NSObject
+@interface BNRItem : NSObject <NSCoding>
 
 @property (copy, nonatomic) NSString *itemName;
 @property (copy ,nonatomic) NSString *serialNumber;
@@ -28,6 +28,9 @@
                  andSerialNumber:(NSString *)sNumber;
 
 - (instancetype)initWithItemName:(NSString *)name;
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
+- (void)encodeWithCoder:(NSCoder *)aCoder;
 
 
 - (NSString *)description;
