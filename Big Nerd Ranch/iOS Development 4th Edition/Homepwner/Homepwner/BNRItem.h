@@ -15,6 +15,7 @@
 @property (nonatomic) int valueInDollars;
 @property (strong, nonatomic, readonly) NSDate *dateCreated;
 @property (nonatomic, copy) NSString *itemKey;
+@property (strong, nonatomic) UIImage *thumbnail;
 
 + (instancetype)randomItem;
 
@@ -27,6 +28,8 @@
 - (instancetype)initWithItemName:(NSString *)name
                  andSerialNumber:(NSString *)sNumber;
 - (instancetype)initWithItemName:(NSString *)name;
+
+- (void)setThumbnailFromImage:(UIImage *)image;
 
 - (NSString *)description;
 

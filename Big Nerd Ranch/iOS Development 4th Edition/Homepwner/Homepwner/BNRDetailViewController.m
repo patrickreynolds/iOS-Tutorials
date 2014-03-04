@@ -198,7 +198,7 @@
         return;
     }
     
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     
     // If the device has a camera, take a picture, otherwise,
     // just pick from photo library
@@ -225,8 +225,6 @@
     } else {
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
-    
-    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
@@ -256,6 +254,9 @@
     // Get picked image from info dictionary
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
+    [self.item setThumbnailFromImage:image];
+    //self.item.thumbnail = image;
+    
     // Store the image in the BNRImageStore for this key
     [[BNRImageStore sharedStore] setImage:image
                                    forKey:self.item.itemKey];
@@ -278,6 +279,7 @@
 
 - (IBAction)backgroundTapped:(id)sender
 {
+    
     [self.view endEditing:YES];
     
     for (UIView *subview in self.view.subviews) {
@@ -289,6 +291,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    
     [textField resignFirstResponder];
     return YES;
 }

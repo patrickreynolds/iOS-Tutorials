@@ -7,12 +7,16 @@
 //
 
 #import "BNRItemsViewController.h"
+#import "BNRItemCell.h"
 #import "BNRDetailViewController.h"
+#import "BNRImageViewController.h"
+#import "BNRImageStore.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 
-@interface BNRItemsViewController()
+@interface BNRItemsViewController() <UIPopoverControllerDelegate>
 
+@property (strong, nonatomic) UIPopoverController *imagePopover;
 //@property (strong, nonatomic) IBOutlet UIView *headerView;
 
 @end
@@ -67,7 +71,11 @@
     [self.tableView setTableHeaderView:headerView];
     */
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"BNRItemCell"];
+    // Load the NIB file
+    UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
+    
+    // Register this NIB, which contains the cell
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"BNRItemCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -89,7 +97,8 @@
     // Create an instance of UITableViewCell, with default appearance
     //UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BNRItemCell" forIndexPath:indexPath];
+    BNRItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BNRItemCell"
+                                                        forIndexPath:indexPath];
     
     // Set the text on the cell with the description of the item
     // that is at the nth index of items, where n = row this cell
@@ -97,7 +106,52 @@
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     BNRItem *item = items[indexPath.row];
     
-    cell.textLabel.text = [item description];
+    // Configure the cell with the BNRItem
+    cell.nameLabel.text = item.itemName;
+    cell.serialNumberLabel.text = item.serialNumber;
+    cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
+    
+    if (item.valueInDollars > 50) {
+        cell.valueLabel.textColor = [UIColor greenColor];
+    } else {
+        cell.valueLabel.textColor = [UIColor redColor];
+    }
+    
+    cell.thumbnailView.image = item.thumbnail;
+    
+    __weak BNRItemCell *weakCell = cell;
+    cell.actionBlock = ^{
+        
+        BNRItemCell *strongCell = weakCell;
+        
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            NSString *itemKey = item.itemKey;
+            
+            // If there is no image, we don't need to display anything
+            UIImage *image = [[BNRImageStore sharedStore] imageForKey:itemKey];
+            if (!image) {
+                return;
+            }
+            
+            // Make a rectangle for the frame of the thumbnail relative to
+            // our table view
+            // Note: there will be a warning on this line that we'll soon discuss
+            CGRect rect = [self.view convertRect:strongCell.thumbnailView.bounds
+                                        fromView:strongCell.thumbnailView];
+            
+            // Create a new BNRImageViewController and set its image
+            BNRImageViewController *imageVC = [[BNRImageViewController alloc] init];
+            imageVC.image = image;
+            
+            // Present a 600x600 popover from the rect
+            self.imagePopover = [[UIPopoverController alloc] initWithContentViewController:imageVC];
+            self.imagePopover.popoverContentSize = CGSizeMake(600, 600);
+            [self.imagePopover presentPopoverFromRect:rect
+                                               inView:self.view
+                             permittedArrowDirections:UIPopoverArrowDirectionAny
+                                             animated:YES];
+        }
+    };
 
     return cell;
 }
@@ -116,6 +170,11 @@
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         //}
     }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.imagePopover = nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
