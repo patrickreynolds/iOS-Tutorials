@@ -29,6 +29,9 @@
 
 - (instancetype)initWithItemName:(NSString *)name;
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
+- (void)encodeWithCoder:(NSCoder *)aCoder;
+
 
 - (NSString *)description;
 

@@ -78,6 +78,7 @@
 }
 
 #pragma mark - Table View Implementation
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[[BNRItemStore sharedStore] allItems] count];
@@ -109,10 +110,6 @@
         BNRItem *item = items[indexPath.row];
         
         
-        //UIAlertView *deletionAlert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Delete %@", item.itemName] message:[NSString stringWithFormat:@"Are you sure you want to remove %@ from the store?", item.itemName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-        //[deletionAlert show];
-        //NSLog(@"After message shown.");
-        //if (self.confirmDelete) {
             [[BNRItemStore sharedStore] removeItem:item];
             
             // Also remove that row from the table view with an animation

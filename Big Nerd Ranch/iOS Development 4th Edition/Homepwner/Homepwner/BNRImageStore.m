@@ -24,6 +24,9 @@
     dispatch_once(&onceToken, ^{
         sharedStore = [[self alloc] initPrivate];
     });
+    if (!sharedStore) {
+        sharedStore = [[BNRImageStore alloc] initPrivate];
+    }
     
     return sharedStore;
 }
@@ -48,6 +51,7 @@
                selector:@selector(clearCache:)
                    name:UIApplicationDidReceiveMemoryWarningNotification
                  object:nil];
+        [nc addObserver:self selector:@selector(clearCache:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     }
     return self;
 }
@@ -70,6 +74,17 @@
 
     // Write it to full path
     [data writeToFile:imagePath atomically:YES];
+    NSData *data = UIImageJPEGRepresentation(image, 0.5);
+    
+    // Write it to full path
+    [data writeToFile:imagePath atomically:YES];
+}
+
+- (NSString *)imagePathForKey:(NSString *)key
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories firstObject];
+    return [documentDirectory stringByAppendingPathComponent:key];
 }
 
 - (UIImage *)imageForKey:(NSString *)key
@@ -84,6 +99,7 @@
         result = [UIImage imageWithContentsOfFile:imagePath];
         
         // If we found an image on the file syste, palce it into the cache
+        // If we found an image on the file system, place it into the cache
         if (result) {
             self.dictionary[key] = result;
         } else {
@@ -114,6 +130,8 @@
     
     NSString *imagePath = [self imagePathForKey:key];
     [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:imagePath
+                                               error:nil];
 }
 
 @end
