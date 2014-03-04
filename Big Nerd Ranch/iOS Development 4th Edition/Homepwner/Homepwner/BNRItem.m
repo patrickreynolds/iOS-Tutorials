@@ -8,6 +8,9 @@
 
 #import "BNRItem.h"
 
+@interface BNRItem()
+@end
+
 @implementation BNRItem
 
 // Designated initializer for BNRItem

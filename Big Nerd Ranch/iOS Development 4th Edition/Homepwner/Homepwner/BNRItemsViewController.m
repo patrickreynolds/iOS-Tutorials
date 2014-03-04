@@ -78,6 +78,7 @@
 }
 
 #pragma mark - Table View Implementation
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[[BNRItemStore sharedStore] allItems] count];
@@ -109,10 +110,6 @@
         BNRItem *item = items[indexPath.row];
         
         
-        //UIAlertView *deletionAlert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Delete %@", item.itemName] message:[NSString stringWithFormat:@"Are you sure you want to remove %@ from the store?", item.itemName] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
-        //[deletionAlert show];
-        //NSLog(@"After message shown.");
-        //if (self.confirmDelete) {
             [[BNRItemStore sharedStore] removeItem:item];
             
             // Also remove that row from the table view with an animation
@@ -134,7 +131,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] init];
+    BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] initForNewItem:NO];
     
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     BNRItem *selectedItem = items[indexPath.row];
@@ -149,20 +146,22 @@
 #pragma mark - Actions
 - (IBAction)addNewItem:(id)sender
 {
-    NSLog(@"\"New\" button pressed in Header View.");
     
     // Create a new BNRItem and add it to the store
     BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
     
-    // Figure out where that item is in the array
-    NSInteger lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
+    BNRDetailViewController *detailVC =
+    [[BNRDetailViewController alloc] initForNewItem:YES];
     
-    // Make a new index path for the 0th section, last row
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    detailVC.item = newItem;
     
-    // Insert this new row into the table.
-    [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationMiddle];
+    detailVC.dismissBlock = ^{
+        [self.tableView reloadData];
+    };
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:detailVC];
+    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (IBAction)toggleEditingMode:(id)sender

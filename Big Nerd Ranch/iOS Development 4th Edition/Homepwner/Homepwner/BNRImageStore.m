@@ -20,8 +20,12 @@
 {
     static BNRImageStore *sharedStore = nil;
     
-    if (!sharedStore) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         sharedStore = [[self alloc] initPrivate];
+    });
+    if (!sharedStore) {
+        sharedStore = [[BNRImageStore alloc] initPrivate];
     }
     
     return sharedStore;
@@ -48,7 +52,6 @@
                name:UIApplicationDidReceiveMemoryWarningNotification
              object:nil];
     }
-    
     return self;
 }
 
@@ -70,6 +73,13 @@
     
     // Write it to full path
     [data writeToFile:imagePath atomically:YES];
+}
+
+- (NSString *)imagePathForKey:(NSString *)key
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories firstObject];
+    return [documentDirectory stringByAppendingPathComponent:key];
 }
 
 - (UIImage *)imageForKey:(NSString *)key
@@ -103,15 +113,6 @@
     
     NSString *imagePath = [self imagePathForKey:key];
     [[NSFileManager defaultManager] removeItemAtPath:imagePath error:nil];
-}
-
-- (NSString *)imagePathForKey:(NSString *)key
-{
-    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                       NSUserDomainMask,
-                                                                       YES);
-    NSString *documentDirectory = [documentDirectories firstObject];
-    return [documentDirectory stringByAppendingString:key];
 }
 
 @end
