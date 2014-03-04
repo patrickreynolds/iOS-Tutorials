@@ -26,10 +26,7 @@
 // Silver Challange
 - (instancetype)initWithItemName:(NSString *)name
                  andSerialNumber:(NSString *)sNumber;
-
 - (instancetype)initWithItemName:(NSString *)name;
-
-
 - (NSString *)description;
 
 @end
