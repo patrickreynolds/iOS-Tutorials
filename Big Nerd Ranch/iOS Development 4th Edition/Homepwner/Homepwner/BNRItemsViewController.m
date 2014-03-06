@@ -38,11 +38,22 @@
         
         // set this bar button item as the right item in the navigationItem
         navItem.rightBarButtonItem = barButtonItem;
-        
         navItem.leftBarButtonItem = self.editButtonItem;
+        
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self
+               selector:@selector(updateTableViewForDynamicTypeSize)
+                   name:UIContentSizeCategoryDidChangeNotification
+                 object:nil];
     }
     
     return self;
+}
+
+- (void)dealloc
+{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
 }
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
@@ -82,7 +93,7 @@
 {
     [super viewWillAppear:YES];
     
-    [self.tableView reloadData];
+    [self updateTableViewForDynamicTypeSize];
 }
 
 #pragma mark - Table View Implementation
@@ -200,6 +211,27 @@
     
     // Push it onto the top fo the navigation controller's stack
     [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+- (void)updateTableViewForDynamicTypeSize
+{
+    static NSDictionary *cellHeightDictionary;
+    
+    if (!cellHeightDictionary) {
+        cellHeightDictionary = @{ UIContentSizeCategoryExtraSmall : @44,
+                                  UIContentSizeCategorySmall : @44,
+                                  UIContentSizeCategoryMedium : @44,
+                                  UIContentSizeCategoryLarge : @44,
+                                  UIContentSizeCategoryExtraLarge : @55,
+                                  UIContentSizeCategoryExtraExtraLarge : @55,
+                                  UIContentSizeCategoryExtraExtraExtraLarge : @55 };
+    }
+    
+    NSString *userSize = [[UIApplication sharedApplication] preferredContentSizeCategory];
+    
+    NSNumber *cellHeight = cellHeightDictionary[userSize];
+    [self.tableView setRowHeight:cellHeight.floatValue];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Actions
