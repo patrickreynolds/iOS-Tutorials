@@ -7,6 +7,7 @@
 //
 
 #import "BNRDetailViewController.h"
+#import "BNRAssetTypeTVC.h"
 #import "BNRItem.h"
 #import "BNRImageStore.h"
 #import "BNRItemStore.h"
@@ -27,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *serialNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *assetTypeButton;
 
 
 @end
@@ -113,6 +115,24 @@
     // Use filtered NSDate object to set dateLabel contents
     self.dateLabel.text = [dateFormatter stringFromDate:item.dateCreated];
     
+    if (self.item.itemKey) {
+        // Get image for image key from image cache
+        UIImage *imageToDisplay = [[BNRImageStore sharedStore] imageForKey:self.item.itemKey];
+        
+        // Use that image to put ont he screen in imageView
+        self.imageView.image = imageToDisplay;
+    } else {
+        // clear the imageView
+        self.imageView.image = nil;
+    }
+    NSString *typeLabel = [self.item.assetType valueForKey:@"label"];
+    if (!typeLabel) {
+        typeLabel = @"None";
+    }
+    
+    self.assetTypeButton.title = [NSString stringWithFormat:@"Type: %@", typeLabel];
+    
+    /*
     NSString *imageKey = item.itemKey;
     
     // Get the image for its image key from the image store
@@ -120,7 +140,9 @@
     
     // Use that image to put on the screen in the imageView
     self.imageView.image = imageToDisplay;
-    
+    */
+     
+     
     // Updating fonts
     [self updateFonts];
     
@@ -223,6 +245,7 @@
     self.navigationItem.title = _item.itemName;
 }
 
+#pragma mark - UIToolbarButton Items and Methods
 - (IBAction)takePicture:(UIBarButtonItem *)sender
 {
     if ([self.imagePickerPopover isPopoverVisible]) {
@@ -311,6 +334,20 @@
     }
 }
 
+- (IBAction)showAssetTypePicker:(UIBarButtonItem *)sender
+{
+    [self.view endEditing:YES];
+    
+    BNRAssetTypeTVC *assetTypeTVC = [[BNRAssetTypeTVC alloc] init];
+    assetTypeTVC.item = self.item;
+    
+    [self.navigationController pushViewController:assetTypeTVC
+                                         animated:YES];
+}
+
+
+
+#pragma mark - UITextFieldDelegate Methods
 - (IBAction)backgroundTapped:(id)sender
 {
     
@@ -325,7 +362,6 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
     [textField resignFirstResponder];
     return YES;
 }

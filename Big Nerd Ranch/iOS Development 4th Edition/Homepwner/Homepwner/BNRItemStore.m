@@ -10,9 +10,14 @@
 #import "BNRImageStore.h"
 #import "BNRItem.h"
 
+@import CoreData;
+
 @interface BNRItemStore ()
 
 @property (nonatomic) NSMutableArray *privateItmes;
+@property (strong, nonatomic) NSMutableArray *allAssetTypes;
+@property (strong, nonatomic) NSManagedObjectContext *context;
+@property (strong, nonatomic) NSManagedObjectModel *model;
 
 @end
 
@@ -46,16 +51,17 @@
     // Get the one document directory from that list
     NSString *documentDirectory = [documentDirectories firstObject];
     
-    return [documentDirectory stringByAppendingPathComponent:@"items.archive"];
+    return [documentDirectory stringByAppendingPathComponent:@"store.data"];
 }
 
 - (BOOL)saveChanges
 {
-    NSString *path = [self itemArchivePath];
-    
-    // Returns YES on success
-    return [NSKeyedArchiver archiveRootObject:self.privateItmes
-                                       toFile:path];
+    NSError *error;
+    BOOL successful = [self.context save:&error];
+    if (!successful) {
+        NSLog(@"Error saving: %@", [error localizedDescription]);
+    }
+    return successful;
 }
 
 // If a programmer calls [[BNRItemStore alloc] init], let them know
@@ -73,15 +79,58 @@
     self = [super init];
 
     if (self) {
-        NSString *path = [self itemArchivePath];
-        _privateItmes = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        // Read in Homepwner.xcdatamodel
+        _model = [NSManagedObjectModel mergedModelFromBundles:nil];
         
-        // If the array hadn't een saved previously, create a new empty one
-        if (!_privateItmes) {
-            _privateItmes = [[NSMutableArray alloc] init];
+        NSPersistentStoreCoordinator *persistantStoreCoordinator =
+        [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_model];
+        
+        // Where does the SQLite file go?
+        NSString *path = [self itemArchivePath];
+        NSURL *storeURL = [NSURL fileURLWithPath:path];
+        
+        NSError *error = nil;
+        
+        if (![persistantStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                      configuration:nil
+                                                                URL:storeURL
+                                                            options:nil
+                                                              error:&error]) {
+            @throw [NSException exceptionWithName:@"OpenFailure"
+                                           reason:[error localizedDescription]
+                                         userInfo:nil];
         }
+        
+        // Create the managed object context
+        _context = [[NSManagedObjectContext alloc] init];
+        _context.persistentStoreCoordinator = persistantStoreCoordinator;
+        
+        [self loadAllItems];
     }
     return self;
+}
+
+- (void)loadAllItems
+{
+    if (!self.privateItmes) {
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"orderingValue"
+                                                             inManagedObjectContext:self.context];
+        request.entity = entityDescription;
+        
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"orderingValue"
+                                                                         ascending:YES];
+        request.sortDescriptors = @[sortDescriptor];
+        
+        NSError *error;
+        NSArray *result = [self.context executeFetchRequest:request error:&error];
+        if (!result) {
+            [NSException raise:@"Fetch failed" format:@"reason: %@", [error localizedDescription]];
+        }
+        
+        self.privateItmes = [[NSMutableArray alloc] initWithArray:result];
+    }
 }
 
 - (NSArray *)allItems
@@ -91,9 +140,20 @@
 
 - (BNRItem *)createItem
 {
-    BNRItem *item = [[BNRItem alloc] init];
-    [self.privateItmes addObject:item];
+    double order;
+    if ([self.allItems count] == 0) {
+        order = 1.0;
+    } else {
+        order = [[self.privateItmes lastObject] orderingValue] + 1.0;
+    }
     
+    NSLog(@"Adding after %@ items, order = %.2f", [NSNumber numberWithLong:[self.privateItmes count]], order);
+    BNRItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"BNRItem"
+                                                  inManagedObjectContext:self.context];
+    
+    item.orderingValue = order;
+
+    [self.privateItmes addObject:item];
     return item;
 }
 
@@ -102,6 +162,7 @@
     NSString *key= item.itemKey;
     [[BNRImageStore sharedStore] deleteImageForKey:key];
     
+    [self.context deleteObject:item];
     [self.privateItmes removeObjectIdenticalTo:item];
 }
 
@@ -120,6 +181,71 @@
     
     // Insert item in array at new location
     [self.privateItmes insertObject:item atIndex:toIndex];
+    
+    // Computing a new orderValue for the object that was moved
+    double lowerBound = 0.0;
+    
+    // Is there an object before it in the array?
+    if (toIndex > 0) {
+        lowerBound = [self.privateItmes[(toIndex - 1)] orderingValue];
+    } else {
+        lowerBound = [self.privateItmes[1] orderingValue] - 2.0;
+    }
+    
+    double upperBound = 0.0;
+    
+    // Is there an object after in the array?
+    if (toIndex < [self.privateItmes count] - 1) {
+        upperBound = [self.privateItmes[(toIndex + 1)] orderingValue];
+    } else {
+        upperBound = [self.privateItmes[(toIndex - 1)] orderingValue] + 2.0;
+    }
+    
+    double newORderValue = (lowerBound + upperBound) / 2.0;
+    
+    NSLog(@"moving to order %f", newORderValue);
+    item.orderingValue = newORderValue;
+}
+
+- (NSArray *)allAssetTypes
+{
+    if (!_allAssetTypes) {
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        
+        NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"BNRAssetType"
+                                                             inManagedObjectContext:self.context];
+        request.entity = entityDescription;
+        
+        NSError *error = nil;
+        NSArray *result = [self.context executeFetchRequest:request
+                                                      error:&error];
+        if (!result) {
+            [NSException raise:@"Fetch failed" format:@"Reason: %@", [error localizedDescription]];
+        }
+        
+        _allAssetTypes = [result mutableCopy];
+    }
+    
+    // Is this the first time the program is being run?
+    if ([_allAssetTypes count] == 0) {
+        NSManagedObject *type;
+        
+        type = [NSEntityDescription insertNewObjectForEntityForName:@"BNRAssetType"
+                                             inManagedObjectContext:self.context];
+        [type setValue:@"Furniture" forKey:@"label"];
+        [_allAssetTypes addObject:type];
+        
+        type = [NSEntityDescription insertNewObjectForEntityForName:@"BNRAssetType"
+                                             inManagedObjectContext:self.context];
+        [type setValue:@"Jewelry" forKey:@"label"];
+        [_allAssetTypes addObject:type];
+        
+        type = [NSEntityDescription insertNewObjectForEntityForName:@"BNRAssetType"
+                                             inManagedObjectContext:self.context];
+        [type setValue:@"Electronics" forKey:@"label"];
+        [_allAssetTypes addObject:type];
+    }
+    return _allAssetTypes;
 }
 
 @end

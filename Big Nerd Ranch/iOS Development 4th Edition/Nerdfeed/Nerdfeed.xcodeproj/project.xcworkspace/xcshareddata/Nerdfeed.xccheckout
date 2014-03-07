@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2AD3020C-BC1E-49F2-A21E-093AA5A9BBF5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Nerdfeed</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C729411C-DEC2-4991-91C4-586C32EA6094</key>
+		<string>https://github.com/patrickreynolds/iOS-Tutorials.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Big Nerd Ranch/iOS Development 4th Edition/Nerdfeed/Nerdfeed.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C729411C-DEC2-4991-91C4-586C32EA6094</key>
+		<string>../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/patrickreynolds/iOS-Tutorials.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C729411C-DEC2-4991-91C4-586C32EA6094</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C729411C-DEC2-4991-91C4-586C32EA6094</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS Tutorials</string>
+		</dict>
+	</array>
+</dict>
+</plist>
