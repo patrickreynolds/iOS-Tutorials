@@ -14,7 +14,7 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 
-@interface BNRItemsViewController() <UIPopoverControllerDelegate>
+@interface BNRItemsViewController() <UIPopoverControllerDelegate, UIDataSourceModelAssociation>
 
 @property (strong, nonatomic) UIPopoverController *imagePopover;
 //@property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -31,6 +31,9 @@
     if (self) {
         UINavigationItem *navItem = self.navigationItem;
         navItem.title = @"Homepwner";
+        
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
         
         // Create a new bar button item that will send
         // addNewItem: to BNRItemsViewController
@@ -61,17 +64,56 @@
     return [self init];
 }
 
-/*
-- (UIView *)headerView
+#pragma mark - Restoration methods
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
 {
-    if (!_headerView) {
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView"
-                                      owner:self
-                                    options:nil];
-    }
-    return _headerView;
+    return [[self alloc] init];
 }
-*/
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeBool:self.isEditing forKey:@"TableViewIsEditing"];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    self.editing = [coder decodeBoolForKey:@"TableViewIsEditing"];
+    
+    [super decodeRestorableStateWithCoder:coder];
+}
+
+- (NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)idx inView:(UIView *)view
+{
+    NSString *identifier = nil;
+    
+    if (idx && view) {
+        // Return an identifier of the given NSIndexPath,
+        // in case next time the data soure changes
+        BNRItem *item = [[BNRItemStore sharedStore] allItems][idx.row];
+        identifier = item.itemKey;
+    }
+    
+    return identifier;
+}
+
+- (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
+{
+    NSIndexPath *indexPath = nil;
+    
+    if (identifier && view) {
+        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        for (BNRItem *item in items) {
+            if ([identifier isEqualToString:item.itemKey]) {
+                NSInteger row = [items indexOfObjectIdenticalTo:item];
+                indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                break;
+            }
+        }
+    }
+    return indexPath;
+}
 
 #pragma mark - View Life Cycle
 - (void)viewDidLoad
@@ -87,6 +129,8 @@
     
     // Register this NIB, which contains the cell
     [self.tableView registerNib:nib forCellReuseIdentifier:@"BNRItemCell"];
+    
+    self.tableView.restorationIdentifier = @"BNRItemsViewControllerTableView";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -252,6 +296,8 @@
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:detailVC];
     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    navigationController.restorationIdentifier = NSStringFromClass([navigationController class]);
+    
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 

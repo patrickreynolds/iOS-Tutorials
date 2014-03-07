@@ -14,7 +14,8 @@
 
 @interface BNRDetailViewController () <UINavigationControllerDelegate,
                                         UIImagePickerControllerDelegate,
-                                        UITextFieldDelegate,UIPopoverControllerDelegate>
+                                        UITextFieldDelegate,
+                                        UIPopoverControllerDelegate>
 
 @property (strong, nonatomic) UIPopoverController *imagePickerPopover;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
@@ -40,6 +41,10 @@
     self = [super initWithNibName:nil bundle:nil];
     
     if (self) {
+        
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
+        
         if (isNew) {
             UIBarButtonItem *doneItem = [[UIBarButtonItem alloc]
                                          initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -64,18 +69,61 @@
     return self;
 }
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil
+                         bundle:(NSBundle *)nibBundleOrNil
+{
+    @throw [NSException exceptionWithName:@"Wrong initializer"
+                                   reason:@"Use initForNewItem:"
+                                 userInfo:nil];
+    return nil;
+}
+
 - (void)dealloc
 {
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     [defaultCenter removeObserver:self];
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - State Restoration
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
 {
-    @throw [NSException exceptionWithName:@"Wrong initializer"
-                                   reason:@"Use initForNewItem:"
-                                 userInfo:nil];
-    return nil;
+    [coder encodeObject:self.item.itemKey
+                 forKey:@"item.itemKey"];
+    
+    // Save changes into item
+    self.item.itemName = self.nameField.text;
+    self.item.serialNumber = self.serialNumberField.text;
+    self.item.valueInDollars = [self.valueField.text intValue];
+    
+    // Have store save changes to disk
+    [[BNRItemStore sharedStore] saveChanges];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    NSString *itemKey = [coder decodeObjectForKey:@"item.itemKey"];
+    
+    for (BNRItem *item in [[BNRItemStore sharedStore] allItems]) {
+        if ([itemKey isEqualToString:item.itemKey]) {
+            self.item = item;
+            break;
+        }
+    }
+    [super decodeRestorableStateWithCoder:coder];
+}
+
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)path
+                                                            coder:(NSCoder *)coder
+{
+    BOOL isNew = NO;
+    if ([path count] == 3) {
+        isNew = YES;
+    }
+    
+    return [[self alloc] initForNewItem:isNew];
 }
 
 - (void)updateFonts
@@ -166,7 +214,8 @@
     }
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                         duration:(NSTimeInterval)duration
 {
     [self prepareViewsForOrientation:toInterfaceOrientation];
 }
@@ -306,7 +355,8 @@
                                                      completion:self.dismissBlock];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // Get picked image from info dictionary
     UIImage *image = info[UIImagePickerControllerOriginalImage];

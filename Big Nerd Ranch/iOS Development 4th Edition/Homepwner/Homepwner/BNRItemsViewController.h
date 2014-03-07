@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BNRItemsViewController : UITableViewController <UIAlertViewDelegate>
+@interface BNRItemsViewController : UITableViewController <UIViewControllerRestoration>
 
 @end
