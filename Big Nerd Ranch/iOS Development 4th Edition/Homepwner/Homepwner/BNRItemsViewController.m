@@ -48,6 +48,11 @@
                selector:@selector(updateTableViewForDynamicTypeSize)
                    name:UIContentSizeCategoryDidChangeNotification
                  object:nil];
+        
+        [nc addObserver:self
+               selector:@selector(localeChanged:)
+                   name:NSCurrentLocaleDidChangeNotification
+                 object:nil];
     }
     
     return self;
@@ -164,14 +169,23 @@
     // Configure the cell with the BNRItem
     cell.nameLabel.text = item.itemName;
     cell.serialNumberLabel.text = item.serialNumber;
-    cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
     
+    // Create a number formatter for currency
+    static NSNumberFormatter *currencyFormatter = nil;
+    if (currencyFormatter == nil) {
+        currencyFormatter = [[NSNumberFormatter alloc] init];
+        currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    }
+    //cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
+    cell.valueLabel.text = [currencyFormatter stringFromNumber:@(item.valueInDollars)];
+    
+    /*
     if (item.valueInDollars > 50) {
         cell.valueLabel.textColor = [UIColor greenColor];
     } else {
         cell.valueLabel.textColor = [UIColor redColor];
     }
-    
+    */
     cell.thumbnailView.image = item.thumbnail;
     
     __weak BNRItemCell *weakCell = cell;
@@ -275,6 +289,11 @@
     
     NSNumber *cellHeight = cellHeightDictionary[userSize];
     [self.tableView setRowHeight:cellHeight.floatValue];
+    [self.tableView reloadData];
+}
+
+- (void)localeChanged:(NSNotification *)note
+{
     [self.tableView reloadData];
 }
 

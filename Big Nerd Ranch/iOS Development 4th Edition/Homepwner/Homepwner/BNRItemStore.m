@@ -9,6 +9,7 @@
 #import "BNRItemStore.h"
 #import "BNRImageStore.h"
 #import "BNRItem.h"
+#import "BNRAppDelegate.h"
 
 @import CoreData;
 
@@ -150,8 +151,14 @@
     NSLog(@"Adding after %@ items, order = %.2f", [NSNumber numberWithLong:[self.privateItmes count]], order);
     BNRItem *item = [NSEntityDescription insertNewObjectForEntityForName:@"BNRItem"
                                                   inManagedObjectContext:self.context];
-    
     item.orderingValue = order;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    item.valueInDollars = [defaults integerForKey:BNRNextItemValuePrefsKey];
+    item.itemName = [defaults objectForKey:BNRNextItemNamePrefsKey];
+    
+    // List out the defaults
+    NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
 
     [self.privateItmes addObject:item];
     return item;
@@ -229,6 +236,11 @@
     // Is this the first time the program is being run?
     if ([_allAssetTypes count] == 0) {
         NSManagedObject *type;
+        
+        type = [NSEntityDescription insertNewObjectForEntityForName:@"BNRAssetType"
+                                             inManagedObjectContext:self.context];
+        [type setValue:@"None" forKeyPath:@"label"];
+        [_allAssetTypes addObject:type];
         
         type = [NSEntityDescription insertNewObjectForEntityForName:@"BNRAssetType"
                                              inManagedObjectContext:self.context];

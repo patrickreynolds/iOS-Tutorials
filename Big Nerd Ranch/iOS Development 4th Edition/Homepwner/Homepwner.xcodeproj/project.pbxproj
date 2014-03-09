@@ -27,11 +27,11 @@
 		CD7DEB1C18B928CD00ADBEC0 /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7DEB1B18B928CD00ADBEC0 /* BNRItemStore.m */; };
 		CD7DEB1E18B93BF300ADBEC0 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7DEB1D18B93BF300ADBEC0 /* HeaderView.xib */; };
 		CD7DEB2218B9538400ADBEC0 /* BNRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7DEB2018B9538400ADBEC0 /* BNRDetailViewController.m */; };
-		CD7DEB2318B9538400ADBEC0 /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7DEB2118B9538400ADBEC0 /* BNRDetailViewController.xib */; };
 		CD92C66518CA1ECD0016411A /* Homepwner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD92C66318CA1ECD0016411A /* Homepwner.xcdatamodeld */; };
 		CD92C66818CA1F890016411A /* BNRImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD92C66718CA1F890016411A /* BNRImageTransformer.m */; };
 		CD92C66B18CA2C480016411A /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CD92C66A18CA2C480016411A /* BNRItem.m */; };
 		CD92C66E18CA39B50016411A /* BNRAssetTypeTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD92C66D18CA39B50016411A /* BNRAssetTypeTVC.m */; };
+		CD92C66F18CCCBC60016411A /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD92C67118CCCBC60016411A /* BNRDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +75,6 @@
 		CD7DEB1D18B93BF300ADBEC0 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		CD7DEB1F18B9538400ADBEC0 /* BNRDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDetailViewController.h; sourceTree = "<group>"; };
 		CD7DEB2018B9538400ADBEC0 /* BNRDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDetailViewController.m; sourceTree = "<group>"; };
-		CD7DEB2118B9538400ADBEC0 /* BNRDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRDetailViewController.xib; sourceTree = "<group>"; };
 		CD92C66418CA1ECD0016411A /* Homepwner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Homepwner.xcdatamodel; sourceTree = "<group>"; };
 		CD92C66618CA1F890016411A /* BNRImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRImageTransformer.h; sourceTree = "<group>"; };
 		CD92C66718CA1F890016411A /* BNRImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRImageTransformer.m; sourceTree = "<group>"; };
@@ -83,6 +82,8 @@
 		CD92C66A18CA2C480016411A /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
 		CD92C66C18CA39B50016411A /* BNRAssetTypeTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRAssetTypeTVC.h; sourceTree = "<group>"; };
 		CD92C66D18CA39B50016411A /* BNRAssetTypeTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRAssetTypeTVC.m; sourceTree = "<group>"; };
+		CD92C67218CCCC3B0016411A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BNRDetailViewController.xib; sourceTree = "<group>"; };
+		CD92C67318CCCC680016411A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/BNRDetailViewController.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,18 +145,18 @@
 			children = (
 				CD7DEB1F18B9538400ADBEC0 /* BNRDetailViewController.h */,
 				CD7DEB2018B9538400ADBEC0 /* BNRDetailViewController.m */,
-				CD7DEB2118B9538400ADBEC0 /* BNRDetailViewController.xib */,
+				CD92C67118CCCBC60016411A /* BNRDetailViewController.xib */,
 				CD7DEB1418B926A500ADBEC0 /* BNRItemsViewController.h */,
 				CD7DEB1518B926A500ADBEC0 /* BNRItemsViewController.m */,
 				CD4CE22B18C5BBDC00AF149E /* BNRItemCell.h */,
 				CD4CE22C18C5BBDC00AF149E /* BNRItemCell.m */,
 				CD4CE22E18C5BBFA00AF149E /* BNRItemCell.xib */,
+				CD92C66C18CA39B50016411A /* BNRAssetTypeTVC.h */,
+				CD92C66D18CA39B50016411A /* BNRAssetTypeTVC.m */,
 				CD4CE23018C5DC5900AF149E /* BNRImageViewController.h */,
 				CD4CE23118C5DC5900AF149E /* BNRImageViewController.m */,
 				CD7DEB1A18B928CD00ADBEC0 /* BNRItemStore.h */,
 				CD7DEB1B18B928CD00ADBEC0 /* BNRItemStore.m */,
-				CD92C66C18CA39B50016411A /* BNRAssetTypeTVC.h */,
-				CD92C66D18CA39B50016411A /* BNRAssetTypeTVC.m */,
 				CD747B9818B9924F00EFCE09 /* BNRImageStore.h */,
 				CD747B9918B9924F00EFCE09 /* BNRImageStore.m */,
 				CD92C66618CA1F890016411A /* BNRImageTransformer.h */,
@@ -260,6 +261,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CD7DEAD918B925DD00ADBEC0;
 			productRefGroup = CD7DEAE318B925DD00ADBEC0 /* Products */;
@@ -278,7 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD4CE22F18C5BBFA00AF149E /* BNRItemCell.xib in Resources */,
-				CD7DEB2318B9538400ADBEC0 /* BNRDetailViewController.xib in Resources */,
+				CD92C66F18CCCBC60016411A /* BNRDetailViewController.xib in Resources */,
 				CD7DEB1E18B93BF300ADBEC0 /* HeaderView.xib in Resources */,
 				CD7DEAF018B925DD00ADBEC0 /* InfoPlist.strings in Resources */,
 				CD7DEAF818B925DD00ADBEC0 /* Images.xcassets in Resources */,
@@ -348,6 +350,15 @@
 				CD7DEB0818B925DD00ADBEC0 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CD92C67118CCCBC60016411A /* BNRDetailViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD92C67218CCCC3B0016411A /* Base */,
+				CD92C67318CCCC680016411A /* es */,
+			);
+			name = BNRDetailViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
